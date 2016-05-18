@@ -1,0 +1,3 @@
+As vantagens desse pattern são: organização, clareza, performance, expõe publicamente apenas as funções e variáveis que
+se deseja e namespace único evitando sobrescrever métodos facilmente.
+

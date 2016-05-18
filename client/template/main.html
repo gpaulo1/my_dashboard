@@ -1,0 +1,40 @@
+<head>
+  <title>Meu Gerenciador Financeiro</title>
+</head>
+
+<body>
+    <!--top menu -->
+    {{> menu}}
+
+    <!--Formatting space of layout -->
+    <div class="row">
+        <div class="col-xs-6 col-md-1"></div>
+        <div class="col-xs-6 col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{>dashboard}}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-1"></div>
+    </div>
+
+    <!-- Statement mask to currency fields -->
+    <script>
+        $(function() {
+            $('.currency').maskMoney({
+                allowNegative:true,
+                prefix: 'R$',
+                thousands: '.',
+                decimal: ',',
+                allowZero: false
+            });
+        });
+    </script>
+
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>

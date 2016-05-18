@@ -1,0 +1,68 @@
+<template name="modalAddMoney">
+    <div class="modal fade" id="addRegistry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <form class="createRegistry">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Descrição</label>
+                                <input type="text" class="form-control" id="description"
+                                       placeholder="Descrição do registro" name="description">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Valor</label>
+                                <input type="text" class="form-control currency" placeholder="Valor do registro"
+                                       id="currency"
+                                       name="currency">
+                            </div>
+                            <!-- checkbox input/output currency-->
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="typeRegistry" id="typeRegistryInput" value="input" checked>
+                                    Entrada
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="typeRegistry" id="typeRegistryOutput" value="output">
+                                    Saída
+                                </label>
+                            </div>
+                            <div class="fieldsToOutput">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tipo de pagamento</label>
+                                    <select type="text" class="form-control" id="modalityOutput" name="modalityOutput">
+                                        <option value="Alimentação">Alimentação</option>
+                                        <option value="Carro">Carro</option>
+                                        <option value="Despesas de casa">Despesa de casa</option>
+                                        <option value="Investimento">Investimento</option>
+                                        <option value="Lazer">Lazer</option>
+                                        <option value="Supermercado">Supermercado</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="fieldsToInput">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tipo de pagamento</label>
+                                    <select type="text" class="form-control" id="modalityInput" name="modalityInput">
+                                        <option value="Salário">Salário</option>
+                                        <option value="Empréstimo">Empréstimo</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+                            <button type="submit" class="btn btn-primary">Lançar</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

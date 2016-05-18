@@ -1,0 +1,128 @@
+<template name="dashboard">
+
+    {{#if hasAccountOrAccount}}
+        <div class="well well-lg">
+            <button type="button" class="btn btn-primary" aria-label="Left Align" id="addAccount" addAccount>
+                <i class="fa fa-archive"></i> Adicionar conta
+            </button>
+            <button type="button" class="btn btn-info" aria-label="Left Align" addAccount>
+                <i class="fa fa-calendar"></i> Adicionar conta fixa
+            </button>
+            <button type="button" class="btn btn-success" aria-label="Left Align" addMoney>
+                <i class="fa fa-money"></i> Adicionar registro
+            </button>
+        </div>
+    {{else}}
+        <div class="well well-lg">
+            <button type="button" class="btn btn-primary" aria-label="Left Align" addAccount>
+                <i class="fa fa-archive"></i> Adicionar conta
+            </button>
+        </div>
+    {{/if}}
+
+    <!-- Nav of axisting accounts -->
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#" data-toggle="tab" id="dashboardTab">Dashboard</a></li>
+        {{#each accounts}}
+            <li role="presentation"><a href="#" data-toggle="tab" class="nav_accounts" id="{{_id}}">{{description}}</a>
+            </li>
+        {{/each}}
+    </ul>
+
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-3">
+                    <p>
+                    <h3>Saldo: <span class="label label-warning">R$ {{financialAbstract.currency}}</span></h3>
+                    </p>
+                </div>
+                <div class="col-md-9">
+                    <br>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{financialAbstract.averageOutput}}">
+                            {{financialAbstract.averageOutput}}
+                        </div>
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{financialAbstract.averageInput}}">
+                            {{financialAbstract.averageInput}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th width="50%">Descrição</th>
+                    <th width="25%">Modalidade</th>
+                    <th width="20%">Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each registrys}}
+                    <tr>
+                        <th>
+                            <button class="btn btn-default btn-xs" type="submit" value="{{_id}}" id="removeRegistry"><i
+                                    class="fa fa-trash-o"></i></button>
+                        </th>
+                        <th scope="row">{{description}}</th>
+                        <td>{{modality}}</td>
+                        {{#if isOutput typeRegistry }}
+                            <td><span class="label label-danger"><i class="fa fa-arrow-down"></i></span> R$ {{currency}}
+                            </td>
+                        {{else}}
+                            <td><span class="label label-success"><i class="fa fa-arrow-up"></i></span> R$ {{currency}}
+                            </td>
+                        {{/if}}
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+            {{#if existRegistry}}
+                <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> Não há registros
+                    cadastrados ainda.
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="col-md-3">
+            <h1>
+                <small>Contas fixas</small>
+            </h1>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">R$ 148,50</span>
+                    <a href="#">Aluguel</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">R$ 49,90</span>
+                    Celular
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <button type="button" class="btn btn-danger pull-right" id="removeAccount"><i class="fa fa-trash-o"></i> Remover
+        conta
+    </button>
+
+    <!-- Modal statements -->
+    {{>modalAddMoney}}
+    {{>modalAddAccount}}
+    {{>modalConfirmRemove}}
+    {{>modalRemoveRegistry}}
+
+    <script>
+        $(document).ready(function () {
+            activaTab(this);
+        });
+
+        function activaTab(tab) {
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+        }
+    </script>
+
+</template>
